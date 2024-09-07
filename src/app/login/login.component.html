@@ -26,7 +26,7 @@
                     <input [(ngModel)]="projectPassword" class="input100" type="password" placeholder="Project Password">
                 </div>
 
-                <div class="container-login100-form-btn">
+                <div *ngIf="isLoading == false" class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
                         <button *ngIf="validateInput()" class="login100-form-btn" (click)="login()">
