@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:PM1": "node dist/pm1/server/server.mjs"
+    "serve:ssr:PM1": "node dist/server/server.mjs"
   },
   "private": true,
   "dependencies": {
