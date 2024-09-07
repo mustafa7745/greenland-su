@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">اضافة منتج جديد</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="الاسم"
+        [(ngModel)]="newName"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="الرقم"
+        [(ngModel)]="number"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="السعر"
+        [(ngModel)]="price"
+      />
+      <div *ngIf="productGroup">
+        {{ productGroup.name }}
+      </div>
+      <button
+        *ngIf="!productGroup"
+        type="button"
+        class="btn btn-success"
+        (click)="chooseProductGroup()"
+      >
+        اختيار مجموعه
+      </button>
+      <img
+        style="width: 100px; height: 100px"
+        [src]="imgResultAfterCompression"
+        *ngIf="imgResultAfterCompression"
+      />
+      <div class="mb-3">
+        <label for="formFile" class="form-label"
+          >صورة الكوبون مع الفاتورة</label
+        >
+        <button type="button" class="btn btn-success" (click)="compressFile()">
+          Choose image
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="isDisabledSaveButton()"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>

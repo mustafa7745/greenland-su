@@ -1,0 +1,108 @@
+<!-- <h1 class="group"> <a  routerLink="dashboard/groups" routerLinkActive="active" ></a>groups</h1> -->
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title" id="offcanvas-basic-title">Profile update</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav>
+      <ul>
+        <li>
+          <a
+            routerLink="/dashboard/permissions"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >الفئات</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/dashboard/ads"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >الاعلانات</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/dashboard/project_managers"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >المدراء</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/dashboard/offers"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >العروض</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/dashboard/notifications"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >الاشعارات</a
+          >
+        </li>
+       
+        <li>
+          <a
+            routerLink="/dashboard/users"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >مناديب التوصيل</a
+          >
+        </li>
+      
+
+        <li>
+          <a
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="updateToken()"
+            >تحديث الجلسة</a
+          >
+        </li>
+        <li style="position: absolute; bottom: 5px">
+          <a
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="logout()"
+            >تسجيل الخروج</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>
+
+<div
+  style="
+    text-align: center;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  "
+>
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
+    قائمة الخيارات
+  </button>
+</div>
+
+<router-outlet></router-outlet>

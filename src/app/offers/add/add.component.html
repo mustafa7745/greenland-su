@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">اضافة عرض جديد</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="وصف العرض"
+        [(ngModel)]="description"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="اسم العرض"
+        [(ngModel)]="newName"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="سعر العرض"
+        [(ngModel)]="price"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="تاريخ انتهاءا لعرض"
+        [(ngModel)]="expireAt"
+      />
+      <img
+        style="width: 100px; height: 100px"
+        [src]="imgResultAfterCompression"
+        *ngIf="imgResultAfterCompression"
+      />
+      <div class="mb-3">
+        <label for="formFile" class="form-label">صورة العرض</label>
+        <button type="button" class="btn btn-success" (click)="compressFile()">
+          Choose image
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="isDisabledSaveButton()"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>

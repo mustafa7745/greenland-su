@@ -1,0 +1,62 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">تحديث الصورة</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div style="display: flex;"  *ngIf="imgResultAfterCompression">
+    <label for="exampleInputEmail1">Ratio</label>
+    <input
+    id="exampleInputEmail1"
+        type="text"
+        class="form-control"
+        placeholder="النسبة"
+        [(ngModel)]="ratio"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="الجودة"
+        [(ngModel)]="quality"
+      />
+      <button class="btn-outline-primary" (click)="compressFile()">تطبيق</button>
+  </div>
+  <div class="row">
+    <div style="display: flex">
+      <div *ngIf="imgResultAfterCompression">
+        <img
+          style="width: 250px; height: 250px"
+          [src]="imgResultAfterCompression"
+        />
+        <div>{{size(imgResultAfterCompression)}}</div>
+      </div>
+      <div *ngIf="imgResultBeforeCompression">
+        <img
+          style="width: 250px; height: 250px"
+          [src]="imgResultBeforeCompression"
+        />
+        <div>{{size(imgResultBeforeCompression)}}</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="formFile" class="form-label"> اختار الصورة</label>
+      <button type="button" class="btn btn-success" (click)="compressFile()">
+        اختيار صورة
+      </button>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="isDisabledSaveButton()"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>

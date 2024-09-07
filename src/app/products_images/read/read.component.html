@@ -1,0 +1,123 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">
+    <div style="text-align: center; direction: ltr">المنتجات</div>
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <!-- <button (click)="read()">read</button> -->
+  <div *ngIf="isLoading; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div style="text-align: center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-template>
+  <!-- 1 -->
+  <ng-template #elseBlock>
+    <div *ngIf="isError; then thenBlock1; else elseBlock1"></div>
+    <ng-template #thenBlock1>
+      <div style="text-align: center">
+        <div>
+          <div
+            style="
+              border: 1px solid rgb(255, 8, 8);
+              border-radius: 60px;
+              width: 400px;
+              margin: auto;
+              height: 300px;
+              display: flex;
+              justify-items: center;
+              align-items: center;
+              background-color: aliceblue;
+            "
+          >
+            <div style="width: -webkit-fill-available">
+              <div style="margin: 10px; color: red">
+                {{ error }}
+              </div>
+
+              <button
+                *ngIf="!isSearchMode"
+                (click)="read()"
+                class="btn btn-outline-danger"
+              >
+                اعادة المحاولة
+              </button>
+              <button
+                *ngIf="isSearchMode"
+                (click)="search()"
+                class="btn btn-outline-danger"
+              >
+                اعادة المحاولة
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock1>
+      <div class="col">
+        <button (click)="add()" class="btn btn-outline-primary">اضافة</button>
+        <button
+          *ngIf="stateController.selected.length > 0"
+          class="btn btn-outline-danger"
+          (click)="openDelete()"
+        >
+          حذف
+        </button>
+      </div>
+      <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
+        <div
+          class="card1"
+          style="
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: space-between;
+            height: 215px;
+          "
+        >
+          <div>
+            <img
+              src="{{ item.product_image_path + item.image }}"
+              style="
+                height: 200px;
+                width: 200px;
+                border: 1px solid black;
+                border-radius: 20px;
+              "
+              alt=""
+              srcset=""
+            />
+          </div>
+          <span>
+            <button
+              class="btn btn-primary"
+              *ngIf="stateController.selected.includes(item.id) === false"
+              (click)="stateController.addToSelected(item.id)"
+            >
+              تحديد
+            </button>
+            <button
+              class="btn btn-danger"
+              *ngIf="stateController.selected.includes(item.id) === true"
+              (click)="stateController.removeFromSelected(item.id)"
+            >
+              الغاء التحديد
+            </button>
+          </span>
+        </div>
+      </ng-template>
+    </ng-template>
+  </ng-template>
+</div>

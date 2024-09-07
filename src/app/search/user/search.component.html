@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Search User</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div  class="search">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search Here .."
+      [(ngModel)]="properties.searchText"
+    />
+    <button
+      *ngIf="!properties.loadingSearch"
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="properties.isDisabledSearchButton()"
+      (click)="search()"
+    >
+      <i class="bi bi-search"></i>
+    </button>
+    <button
+      *ngIf="properties.loadingSearch"
+      class="btn btn-primary"
+      type="button"
+      disabled
+    >
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+    </button>
+  </div>
+
+  <!--  -->
+
+  <ng-template
+  ngFor
+  let-item
+  [ngForOf]="properties.list"
+  let-c="index"
+>
+  <tr>
+   
+    <td>
+      <button
+      *ngIf="!properties.loadingReadMore"
+      class="btn btn-outline-primary me-2"
+      (click)="choose(item)"
+    >
+      <div>Choose</div>
+    </button>
+    </td>
+    <td>
+      {{ item.user_name }}
+    </td>
+
+   
+  </tr>
+</ng-template>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">اضافة عرض جديد</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <Button (click)="openModalSearchProduct()" *ngIf="!product"
+        >المنتج</Button
+      >
+      <div *ngIf="product">{{ product.name }}</div>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="الكمية"
+        [(ngModel)]="quantity"
+      />
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="isDisabledSaveButton()"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>
