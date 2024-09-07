@@ -27,12 +27,12 @@
                 </div>
 
                 <div  class="container-login100-form-btn">
-                    <div *ngIf="isLoading == false" class="wrap-login100-form-btn">
+                    <div *ngIf="!isLoading" class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
                         <button *ngIf="validateInput()" class="login100-form-btn" (click)="login()">
                             Login
                         </button>
-                        <div *ngIf="isLoading == true" class="login100-form-btn">
+                        <div *ngIf="isLoading" class="login100-form-btn">
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         </div>
                     </div>
