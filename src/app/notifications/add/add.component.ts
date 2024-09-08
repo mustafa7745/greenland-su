@@ -65,7 +65,7 @@ export class ModalAddNotifications {
       data3,
       this.requestServer.sharedMethod.urls.notificationsUrl,
       (result) => {
-        console.log(result);
+        // console.log(result);
         loadingModal.close();
         this.activeModal.close(result);
         const successModal =

@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgxImageCompressService } from 'ngx-image-compress';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResquestServer } from '../../../data/shared/requestServer';
 
 @Component({
-  selector: 'update-product-name',
+  selector: 'update-offer-quantity',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './update.component.html',
 })
-export class ModalUpdateProductName {
+export class ModalUpdateOfferProductQuantity {
   data: any;
   //
   requestServer = new ResquestServer();
@@ -19,7 +18,7 @@ export class ModalUpdateProductName {
 
   newName = '';
   isDisabledSaveButton() {
-    return !(this.newName.length > 0 && this.data.postPrice != this.newName);
+    return !(this.newName.length > 0 && this.data.order != this.newName);
   }
   onSave() {
     this.addConfirm();
@@ -38,8 +37,6 @@ export class ModalUpdateProductName {
         a.close();
       })
       .catch(() => {
-        this.activeModal.dismiss();
-
         a.dismiss();
       });
   }
@@ -49,14 +46,14 @@ export class ModalUpdateProductName {
     loadingModal.componentInstance.title = ' يرجى الانتظار ';
 
     const data3 = {
-      tag: 'updateName',
-      inputProductId: this.data.id,
-      inputProductName: this.newName,
+      tag: 'updateQuantity',
+      inputOfferProductId: this.data.id,
+      inputProductQuantity: this.newName,
     };
 
     this.requestServer.request2(
       data3,
-      this.requestServer.sharedMethod.urls.productsUrl,
+      this.requestServer.sharedMethod.urls.offersProductsUrl,
       (result) => {
         loadingModal.close();
         this.activeModal.close(result);

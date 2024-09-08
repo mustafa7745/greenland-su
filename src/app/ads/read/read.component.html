@@ -55,33 +55,58 @@
     <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
       <div
         style="
-          height: 100px;
-          background-color: aliceblue;
-          margin: 10px;
-          border-radius: 10px;
-          padding: 5px;
+          background-color: #f0f8ff;
+          margin: 15px;
+          border-radius: 15px;
+          padding: 15px;
           display: flex;
-          justify-items: center;
+          align-items: center;
           justify-content: space-between;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         "
       >
-        <div>
-          {{ item.description }}
-        </div>
-        <span
+        <div
           style="
-            border: 1px solid;
-            padding: 2px;
-            direction: rtl;
-            border-radius: 10px;
-            width: 250px;
+            width: 320px; /* Adjust the width according to your layout */
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
           "
         >
-          <div>
-            <span>تاريخ الاضافة: </span>
-            <span>{{ item.createdAt }}</span>
-          </div>
-        </span>
+          <img
+            [src]="item.image"
+            alt="{{ item.name }}"
+            style="
+              width: 100%;
+              height: auto;
+              display: block;
+              aspect-ratio: 16 / 9;
+            "
+          />
+        </div>
+
+        <div style="flex-grow: 1; padding-left: 15px">
+          <p style="margin: 0; color: #555">{{ item.description }}</p>
+          <small style="color: #888">تاريخ الإضافة: {{ item.createdAt }}</small>
+        </div>
+
+        <button
+          (click)="openUpdateAvailable(item)"
+          [ngStyle]="{
+            'background-color': item.isEnabled == 1 ? '#28a745' : '#dc3545'
+          }"
+          style="
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          "
+        >
+          {{ item.isEnabled == 1 ? "Enable" : "Disable" }}
+        </button>
       </div>
     </ng-template>
   </ng-template>

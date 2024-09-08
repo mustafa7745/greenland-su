@@ -7,7 +7,7 @@ import { ResquestServer } from '../../../data/shared/requestServer';
 import { ChooseProductsGroupsModal } from '../../../products_groups/choose/read.component';
 
 @Component({
-  selector: 'ngbd-modal-add-group34',
+  selector: 'update-product-group',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './update.component.html',
@@ -43,6 +43,8 @@ export class ModalUpdateProductGroup {
         a.close();
       })
       .catch(() => {
+        this.activeModal.dismiss();
+
         a.dismiss();
       });
   }

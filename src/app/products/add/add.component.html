@@ -7,54 +7,152 @@
     (click)="activeModal.dismiss('Cross click')"
   ></button>
 </div>
-<div class="modal-body">
+<div
+  class="modal-body"
+  style="
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    direction: rtl;
+  "
+>
   <div class="row">
     <div class="col">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="الاسم"
-        [(ngModel)]="newName"
-      />
-      <input
-        type="text"
-        class="form-control"
-        placeholder="الرقم"
-        [(ngModel)]="number"
-      />
-      <input
-        type="text"
-        class="form-control"
-        placeholder="السعر"
-        [(ngModel)]="price"
-      />
-      <div *ngIf="productGroup">
-        {{ productGroup.name }}
-      </div>
-      <button
-        *ngIf="!productGroup"
-        type="button"
-        class="btn btn-success"
-        (click)="chooseProductGroup()"
-      >
-        اختيار مجموعه
-      </button>
-      <img
-        style="width: 100px; height: 100px"
-        [src]="imgResultAfterCompression"
-        *ngIf="imgResultAfterCompression"
-      />
-      <div class="mb-3">
-        <label for="formFile" class="form-label"
-          >صورة الكوبون مع الفاتورة</label
+      <!-- حقل الاسم -->
+      <div class="form-group">
+        <label for="productName" style="font-weight: bold; color: #333"
+          >الاسم</label
         >
-        <button type="button" class="btn btn-success" (click)="compressFile()">
-          Choose image
+        <input
+          id="productName"
+          type="text"
+          class="form-control"
+          placeholder="ادخل الاسم"
+          [(ngModel)]="newName"
+          style="
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        />
+      </div>
+
+      <!-- حقل الرقم -->
+      <div class="form-group">
+        <label for="productNumber" style="font-weight: bold; color: #333"
+          >الرقم</label
+        >
+        <input
+          id="productNumber"
+          type="text"
+          class="form-control"
+          placeholder="ادخل الرقم"
+          [(ngModel)]="number"
+          style="
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        />
+      </div>
+
+      <!-- حقل السعر -->
+      <div class="form-group">
+        <label for="productPrice" style="font-weight: bold; color: #333"
+          >السعر</label
+        >
+        <input
+          id="productPrice"
+          type="text"
+          class="form-control"
+          placeholder="ادخل السعر"
+          [(ngModel)]="price"
+          style="
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        />
+      </div>
+
+      <!-- مجموعة المنتج -->
+      <div class="form-group" style="margin-bottom: 15px">
+        <label style="font-weight: bold; color: #333">مجموعة المنتج</label>
+        <div
+          *ngIf="productGroup"
+          style="padding: 10px; background-color: #e9ecef; border-radius: 5px"
+        >
+          {{ productGroup.name }}
+        </div>
+        <button
+          *ngIf="!productGroup"
+          type="button"
+          class="btn btn-info btn-block"
+          (click)="chooseProductGroup()"
+          style="
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+          "
+        >
+          اختيار مجموعة
         </button>
+      </div>
+
+      <!-- صورة الكوبون -->
+      <div class="form-group text-center" style="margin-bottom: 15px">
+        <img
+          [src]="imgResultAfterCompression"
+          *ngIf="imgResultAfterCompression"
+          alt="صورة الكوبون"
+          style="
+            max-width: 100%;
+            height: 300px;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+          "
+        />
+      </div>
+
+      <!-- زر اختيار الصورة -->
+      <div class="form-group">
+        <label
+          for="formFile"
+          class="form-label"
+          style="font-weight: bold; color: #333"
+          >الصورة</label
+        >
+        <button
+          type="button"
+          class="btn btn-success btn-block"
+          (click)="compressFile()"
+          style="
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        >
+          اختر صورة
+        </button>
+        <small
+          class="form-text text-muted"
+          style="margin-top: 10px; text-align: center"
+        >
+          يجب أن تكون أبعاد الصورة 800x600 بكسل.
+        </small>
       </div>
     </div>
   </div>
 </div>
+
 <div class="modal-footer">
   <button
     type="button"

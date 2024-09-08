@@ -8,6 +8,7 @@ import { ProductsGroupsModal } from '../../products_groups/read/read.component';
 import { ModalUpdateCategoryName } from '../update/name/update.component';
 import { ModalUpdateCategoryImage } from '../update/image/update.component';
 import { ModalAddAds } from '../add/add.component';
+import { ModalUpdateAdsAvailable } from '../update/available/update.component';
 
 @Component({
   selector: 'ads',
@@ -116,5 +117,24 @@ export class AdsComponent {
       }
     );
     a.componentInstance.onOpen(item);
+  }
+  openUpdateAvailable(item: any) {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateAdsAvailable,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
+    });
   }
 }

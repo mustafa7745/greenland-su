@@ -7,6 +7,8 @@ import { ModalCustomDelete } from '../../delete/delete-groups.component';
 import { ResquestServer } from '../../data/shared/requestServer';
 import { ProductsImagesModal } from '../../products_images/read/read.component';
 import { ModalAddProductToOffer } from '../add/add.component';
+import { ModalUpdateOfferProductQuantity } from '../update/quantity/update.component';
+import { StateController } from '../../data/shared/stateController';
 
 @Component({
   selector: 'ngbd-modal-pg-groups-component-from-perm',
@@ -15,6 +17,8 @@ import { ModalAddProductToOffer } from '../add/add.component';
   templateUrl: './read.component.html',
 })
 export class OffersProductsModal {
+  stateController = new StateController();
+
   data: any;
   activeModal = inject(NgbActiveModal);
   requestServer = new ResquestServer();
@@ -90,6 +94,50 @@ export class OffersProductsModal {
     a.componentInstance.onOpen(item);
     a.result.then((r) => {
       this.resultData.push(JSON.parse(r));
+    });
+  }
+  openUpdateQuantity(item: any) {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateOfferProductQuantity,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
+    });
+  }
+  openDelete() {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalCustomDelete,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(
+      this.stateController.selected,
+      this.requestServer.sharedMethod.urls.offersProductsUrl
+    );
+    a.result.then((r) => {
+      this.stateController.selected.forEach((id) => {
+        const index = this.resultData.findIndex((el) => el.id == id);
+        if (index > -1) {
+          this.resultData.splice(index,1);
+        }
+      });
+      this.stateController.selected = []
+
     });
   }
 }

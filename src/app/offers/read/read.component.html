@@ -55,48 +55,107 @@
     <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
       <div
         style="
-          height: 150px;
-          background-color: aliceblue;
+          height: 180px;
+          background-color: #f8f9fa;
           margin: 10px;
-          border-radius: 10px;
-          padding: 5px;
+          border-radius: 15px;
+          padding: 10px;
           display: flex;
-          justify-items: center;
+          align-items: center;
           justify-content: space-between;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
         "
+     
       >
-        <img
-          (click)="openModalUpdateImage(item)"
-          src="{{ item.image }}"
-          style="aspect-ratio: 16/9"
-          alt=""
-          srcset=""
-        />
-        <span
+        <div
           style="
-            border: 1px solid;
-            padding: 2px;
-            direction: rtl;
-            border-radius: 10px;
-            width: 250px;
+            width: 320px; /* Adjust the width according to your layout */
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+          "
+          (click)="openModalUpdateImage(item)"
+        >
+          <img
+            [src]="item.image"
+            alt="{{ item.name }}"
+            style="
+              width: 100%;
+              height: auto;
+              display: block;
+              aspect-ratio: 16 / 9;
+            "
+          />
+        </div>
+    
+        <div
+          style="
+            flex-grow: 1;
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
           "
         >
-          <button (click)="openProducts(item)" class="btn btn-outline-success">
-            المنتجات
-          </button>
-          <div (click)="openModalUpdateName(item)">
+          <div
+            style="
+              font-weight: bold;
+              font-size: 1.2em;
+              margin-bottom: 5px;
+              cursor: pointer;
+            "
+            (click)="openModalUpdateName(item)"
+          >
             {{ item.name }}
           </div>
-          <div>
-            <span>الترتيب: </span>
-            <span>{{ item.order }}</span>
-          </div>
-          <div>
+          <div
+          style="
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            cursor: pointer;
+          "
+          (click)="openUpdatePrice(item)"
+        >
+          {{ item.price }}
+        </div>
+          <div style="font-size: 0.9em; color: #6c757d; margin-bottom: 10px;">
             <span>تاريخ الاضافة: </span>
             <span>{{ item.createdAt }}</span>
           </div>
-        </span>
+    
+          <div style="display: flex; gap: 10px;">
+            <button
+              (click)="openProducts(item)"
+              class="btn btn-outline-success"
+              style="flex-grow: 1;"
+            >
+              المنتجات
+            </button>
+    
+            <button
+              (click)="openUpdateAvailable(item)"
+              [ngStyle]="{
+                'background-color': item.isEnabled == 1 ? '#28a745' : '#dc3545'
+              }"
+              style="
+                color: white;
+                border: none;
+                border-radius: 10px;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                flex-grow: 1;
+              "
+            >
+              {{ item.isEnabled == 1 ? "Enable" : "Disable" }}
+            </button>
+          </div>
+        </div>
       </div>
     </ng-template>
+    
   </ng-template>
 </ng-template>

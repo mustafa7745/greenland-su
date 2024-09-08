@@ -5,7 +5,7 @@ import { ResquestServer } from '../../../data/shared/requestServer';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'ngbd-modal-add-group34',
+  selector: 'update-product-available',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template : ''
@@ -39,6 +39,7 @@ export class ModalUpdateProductAvailable {
         a.close();
       })
       .catch(() => {
+        this.activeModal.dismiss();
         a.dismiss();
       });
   }

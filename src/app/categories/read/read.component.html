@@ -65,74 +65,100 @@
     <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
       <div
         style="
-          height: 100px;
-          background-color: aliceblue;
+          background-color: #f8f9fa;
           margin: 10px;
-          border-radius: 10px;
-          padding: 5px;
+          border-radius: 12px;
+          padding: 15px;
           display: flex;
-          justify-items: center;
+          align-items: center;
           justify-content: space-between;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          transition: background-color 0.3s ease;
         "
       >
-        <img
-          (click)="openModalUpdateImage(item)"
-          src="{{ item.category_image_path + item.image }}"
-          style="width: 70px; height: 70px"
-          alt=""
-          srcset=""
-        />
-        <span
+        <!-- Image Section -->
+        <div style="flex-shrink: 0; display: flex; align-items: center;">
+          <img
+            (click)="openModalUpdateImage(item)"
+            src="{{ item.category_image_path + item.image }}"
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 8px;
+              object-fit: cover;
+              cursor: pointer;
+            "
+            alt="{{ item.name }}"
+          />
+        </div>
+    
+        <!-- Information Section -->
+        <div
           style="
-            border: 1px solid;
-            padding: 2px;
-            direction: rtl;
-            border-radius: 10px;
-            width: 250px;
+            flex-grow: 1;
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
           "
         >
-          <div (click)="openModalUpdateName(item)">
+          <div
+            (click)="openModalUpdateName(item)"
+            style="
+              font-size: 1.2em;
+              font-weight: 600;
+              margin-bottom: 5px;
+              cursor: pointer;
+            "
+          >
             {{ item.name }}
           </div>
-          <div>
+          <div style="color: #6c757d; font-size: 0.9em;">
             <span>الترتيب: </span>
-            <span (click)="openModalUpdateOrder(item)">{{ item.order }}</span>
+            <span (click)="openModalUpdateOrder(item)" style="cursor: pointer;">
+              {{ item.order }}
+            </span>
           </div>
-          <div>
+          <div style="color: #6c757d; font-size: 0.9em;">
             <span>تاريخ الاضافة: </span>
             <span>{{ item.createdAt }}</span>
           </div>
-        </span>
-        <span>
+        </div>
+    
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 10px; align-items: center;">
           <button
             (click)="openProductsGroups(item)"
             class="btn btn-outline-success"
           >
             مجموعات المنتجات
           </button>
-        </span>
-
-        <span>
+    
           <button
-            class="btn btn-primary"
-            *ngIf="stateController.selected.includes(item.id) === false"
-            (click)="stateController.addToSelected(item.id)"
+            class="btn"
+            [ngClass]="{
+              'btn-primary': !stateController.selected.includes(item.id),
+              'btn-danger': stateController.selected.includes(item.id)
+            }"
+            (click)="
+              stateController.selected.includes(item.id)
+                ? stateController.removeFromSelected(item.id)
+                : stateController.addToSelected(item.id)
+            "
           >
-            تحديد
+            {{
+              stateController.selected.includes(item.id)
+                ? 'الغاء التحديد'
+                : 'تحديد'
+            }}
           </button>
-          <button
-            class="btn btn-danger"
-            *ngIf="stateController.selected.includes(item.id) === true"
-            (click)="stateController.removeFromSelected(item.id)"
-          >
-            الغاء التحديد
+    
+          <button (click)="openProducts(item)" class="btn btn-outline-success">
+            المنتجات
           </button>
-        </span>
-
-        <button (click)="openProducts(item)" class="btn btn-outline-success">
-          المنتجات
-        </button>
+        </div>
       </div>
     </ng-template>
+    
   </ng-template>
 </ng-template>

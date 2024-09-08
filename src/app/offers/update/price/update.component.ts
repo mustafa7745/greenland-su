@@ -6,12 +6,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResquestServer } from '../../../data/shared/requestServer';
 
 @Component({
-  selector: 'update-product-name',
+  selector: 'update-offer-price',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './update.component.html',
 })
-export class ModalUpdateProductName {
+export class ModalUpdateOfferPrice {
   data: any;
   //
   requestServer = new ResquestServer();
@@ -39,7 +39,6 @@ export class ModalUpdateProductName {
       })
       .catch(() => {
         this.activeModal.dismiss();
-
         a.dismiss();
       });
   }
@@ -49,14 +48,14 @@ export class ModalUpdateProductName {
     loadingModal.componentInstance.title = ' يرجى الانتظار ';
 
     const data3 = {
-      tag: 'updateName',
-      inputProductId: this.data.id,
-      inputProductName: this.newName,
+      tag: 'updatePrice',
+      inputOfferId: this.data.id,
+      inputOfferPrice: this.newName,
     };
 
     this.requestServer.request2(
       data3,
-      this.requestServer.sharedMethod.urls.productsUrl,
+      this.requestServer.sharedMethod.urls.offersUrl,
       (result) => {
         loadingModal.close();
         this.activeModal.close(result);
@@ -72,4 +71,5 @@ export class ModalUpdateProductName {
       }
     );
   }
+  
 }

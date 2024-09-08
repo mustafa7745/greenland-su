@@ -8,46 +8,66 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div class="row">
-    <div class="col">
+  <div class="row g-3">
+    <!-- Offer Description -->
+    <div class="col-12">
       <input
         type="text"
         class="form-control"
         placeholder="وصف العرض"
         [(ngModel)]="description"
       />
+    </div>
+
+    <!-- Offer Name -->
+    <div class="col-12">
       <input
         type="text"
         class="form-control"
         placeholder="اسم العرض"
         [(ngModel)]="newName"
       />
+    </div>
+
+    <!-- Offer Price -->
+    <div class="col-12">
       <input
         type="text"
         class="form-control"
         placeholder="سعر العرض"
         [(ngModel)]="price"
       />
+    </div>
+
+    <!-- Offer Expiration Date -->
+    <div class="col-12">
       <input
         type="text"
         class="form-control"
-        placeholder="تاريخ انتهاءا لعرض"
+        placeholder="ايام العرض"
         [(ngModel)]="expireAt"
       />
+    </div>
+
+    <!-- Display Compressed Image -->
+    <div class="col-12 text-center" *ngIf="imgResultAfterCompression">
       <img
-        style="width: 100px; height: 100px"
         [src]="imgResultAfterCompression"
-        *ngIf="imgResultAfterCompression"
+        alt="عرض الصورة"
+        style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;"
       />
-      <div class="mb-3">
-        <label for="formFile" class="form-label">صورة العرض</label>
-        <button type="button" class="btn btn-success" (click)="compressFile()">
-          Choose image
-        </button>
-      </div>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="col-12">
+      <label for="formFile" class="form-label">صورة العرض</label>
+      <button type="button" class="btn btn-success w-100" (click)="compressFile()">
+        اختر صورة
+      </button>
     </div>
   </div>
 </div>
+
 <div class="modal-footer">
   <button
     type="button"

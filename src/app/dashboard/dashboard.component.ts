@@ -38,25 +38,7 @@ export class DashboardComponent {
   }
   info: any;
 
-  openModalReadCurrencies() {
-    // const a = this.properties.sharedMethod.modalService.open(
-    //   ModalReadCurrencies,
-    //   {
-    //     keyboard: false,
-    //     backdrop: 'static',
-    //     centered: true,
-    //     fullscreen: false,
-    //   }
-    // );
-    // a.componentInstance.onOpen();
-    // a.result
-    //   .then((r) => {
-    //     this.currency = r;
-    //   })
-    //   .catch(() => {
-    //     a.dismiss();
-    //   });
-  }
+  
   private offcanvasService = inject(NgbOffcanvas);
   closeResult = '';
 
@@ -105,7 +87,6 @@ export class DashboardComponent {
   }
 
   logout() {
-    this.cartController.clearCart();
     this.properties.sharedMethod.removeLogin();
     this.offcanvasService.dismiss();
     this.properties.sharedMethod.sharedNavigate.navigateToLogin();

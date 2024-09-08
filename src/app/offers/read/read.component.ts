@@ -7,6 +7,8 @@ import { ProductsModal } from '../../products/read/read.component';
 import { ProductsGroupsModal } from '../../products_groups/read/read.component';
 import { ModalAddOffer } from '../add/add.component';
 import { OffersProductsModal } from '../../offers-products/read/read.component';
+import { ModalUpdateOffersAvailable } from '../update/available/update.component';
+import { ModalUpdateOfferPrice } from '../update/price/update.component';
 
 @Component({
   selector: 'c1',
@@ -115,5 +117,43 @@ export class OffersComponent {
     //   }
     // );
     // a.componentInstance.onOpen(item);
+  }
+  openUpdateAvailable(item: any) {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateOffersAvailable,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
+    });
+  }
+  openUpdatePrice(item: any) {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateOfferPrice,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
+    });
   }
 }
