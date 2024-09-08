@@ -142,7 +142,7 @@ export class OffersProductsModal {
   getFinalPrice() {
     var sum = 0;
     this.resultData.forEach((element) => {
-      sum = sum + Number(element.postPrice);
+      sum = sum + (Number(element.postPrice) * element.productQuantity);
     });
     return sum;
   }
