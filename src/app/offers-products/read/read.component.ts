@@ -39,31 +39,30 @@ export class OffersProductsModal {
     console.log(this.data.id);
   }
   async read() {
-      this.isLoading = true;
-      this.isError = false;
+    this.isLoading = true;
+    this.isError = false;
 
-      const data3 = {
-        tag: 'read',
-        inputOfferId: this.data.id,
-      };
+    const data3 = {
+      tag: 'read',
+      inputOfferId: this.data.id,
+    };
 
-      this.requestServer.request2(
-        data3,
-        this.requestServer.sharedMethod.urls.offersProductsUrl,
-        (res) => {
-          this.isLoading = false;
-          this.isError = false;
-          // this.resultData = res;
-          const data = JSON.parse(res);
-          this.resultData = data;
-        },
-        (e) => {
-          this.isLoading = false;
-          this.isError = true;
-          this.error = e;
-        }
-      );
-    
+    this.requestServer.request2(
+      data3,
+      this.requestServer.sharedMethod.urls.offersProductsUrl,
+      (res) => {
+        this.isLoading = false;
+        this.isError = false;
+        // this.resultData = res;
+        const data = JSON.parse(res);
+        this.resultData = data;
+      },
+      (e) => {
+        this.isLoading = false;
+        this.isError = true;
+        this.error = e;
+      }
+    );
   }
   search() {}
   add() {
@@ -133,11 +132,18 @@ export class OffersProductsModal {
       this.stateController.selected.forEach((id) => {
         const index = this.resultData.findIndex((el) => el.id == id);
         if (index > -1) {
-          this.resultData.splice(index,1);
+          this.resultData.splice(index, 1);
         }
       });
-      this.stateController.selected = []
-
+      this.stateController.selected = [];
     });
+  }
+
+  getFinalPrice() {
+    var sum = 0;
+    this.resultData.forEach((element) => {
+      sum = sum + Number(element.postPrice);
+    });
+    return sum;
   }
 }

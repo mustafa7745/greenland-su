@@ -63,7 +63,8 @@
       </div>
     </ng-template>
     <ng-template #elseBlock1>
-      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+      <h1>{{ getFinalPrice() }}</h1>
+      <div style="display: flex; gap: 10px; margin-bottom: 15px">
         <button (click)="add()" class="btn btn-outline-primary">إضافة</button>
         <button
           *ngIf="stateController.selected.length > 0"
@@ -73,7 +74,7 @@
           حذف
         </button>
       </div>
-    
+
       <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
         <div
           style="
@@ -88,10 +89,10 @@
             transition: background-color 0.3s ease;
           "
         >
-          <div style="flex-grow: 1; font-weight: 500; font-size: 1.1em;">
+          <div style="flex-grow: 1; font-weight: 500; font-size: 1.1em">
             {{ item.name }}
           </div>
-    
+
           <div
             style="
               flex-grow: 1;
@@ -102,16 +103,17 @@
               transition: color 0.3s ease;
             "
             (click)="openUpdateQuantity(item)"
-           
           >
             {{ item.productQuantity }}
           </div>
-    
-          <div style="flex-shrink: 0;">
+
+          <div style="flex-shrink: 0">
             <button
               class="btn"
               [ngClass]="{
-                'btn-outline-primary': !stateController.selected.includes(item.id),
+                'btn-outline-primary': !stateController.selected.includes(
+                  item.id
+                ),
                 'btn-outline-danger': stateController.selected.includes(item.id)
               }"
               (click)="
@@ -122,14 +124,13 @@
             >
               {{
                 stateController.selected.includes(item.id)
-                  ? 'إلغاء التحديد'
-                  : 'تحديد'
+                  ? "إلغاء التحديد"
+                  : "تحديد"
               }}
             </button>
           </div>
         </div>
       </ng-template>
     </ng-template>
-    
   </ng-template>
 </div>
