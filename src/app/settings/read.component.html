@@ -1,0 +1,47 @@
+<div *ngIf="project" class="project-container">
+  <div class="project-detail">
+    <span class="detail-label">الجهاز:</span>
+    <span class="detail-value">{{ project.deviceId }}</span>
+  </div>
+  <div class="project-detail">
+    <span class="detail-label">الرمز الجغرافي:</span>
+    <span class="detail-value">{{ project.latLong }}</span>
+  </div>
+  <div class="request-status">
+    <div class="status-header">حالة تعيين طلب جديد:</div>
+    <div *ngIf="project.requestOrderStatus == '1'" class="status-active">
+      مفعلة
+    </div>
+    <div *ngIf="project.requestOrderStatus == '0'" class="status-inactive">
+      <span>غير مفعلة</span>
+      <div class="message">
+        <span class="message-label">الرسالة الظاهرة:</span>
+        <span class="message-value" (click)="openUpdateRequestOrderMessage()">{{
+          project.requestOrderMessage
+        }}</span>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <button
+        *ngIf="project.requestOrderStatus == '1'"
+        (click)="openUpdateRequestOrder()"
+        class="btn btn-danger"
+      >
+        إيقاف
+      </button>
+      <button
+        *ngIf="project.requestOrderStatus == '0'"
+        (click)="openUpdateRequestOrder()"
+        class="btn btn-success"
+      >
+        تفعيل
+      </button>
+    </div>
+  </div>
+  <div class="delivery-price">
+    <span class="price-label">سعر التوصيل لكل كيلو متر:</span>
+    <span class="price-value" (click)="openUpdatePrice()">{{
+      project.priceDeliveryPer1km
+    }}</span>
+  </div>
+</div>

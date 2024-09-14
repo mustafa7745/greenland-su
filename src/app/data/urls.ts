@@ -12,6 +12,7 @@ export class Urls {
 
   notificationsUrl = this.baseUrl  + 'notifications/';
   productsUrl = this.baseUrl  + 'products/';
+  projectsUrl = this.baseUrl  + 'projects/';
   productsGroupsUrl = this.baseUrl  + 'products_groups/';
   productsImagesUrl = this.baseUrl  + 'products_images/';
   deliverMenUrl = this.baseUrl  + 'delivery_men/';

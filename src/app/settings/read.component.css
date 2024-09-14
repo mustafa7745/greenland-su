@@ -1,0 +1,76 @@
+.project-container {
+  direction: rtl;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.project-detail, .request-status, .delivery-price {
+  margin-bottom: 15px;
+}
+
+.detail-label, .price-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.detail-value, .price-value {
+  color: #555;
+}
+
+.request-status {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.status-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.status-active {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #dc3545;
+}
+
+.message {
+  margin-top: 10px;
+}
+
+.message-label {
+  font-weight: bold;
+}
+
+.message-value {
+  color: #666;
+}
+
+.action-buttons {
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #28a745;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
