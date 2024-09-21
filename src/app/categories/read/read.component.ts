@@ -78,6 +78,7 @@ export class CategoriesComponent {
         keyboard: false,
         backdrop: 'static',
         centered: true,
+        scrollable:true
       }
     );
     a.result.then((r) => {
@@ -128,6 +129,7 @@ export class CategoriesComponent {
         keyboard: false,
         backdrop: 'static',
         centered: true,
+        scrollable:true
       }
     );
     a.componentInstance.onOpen(item)
