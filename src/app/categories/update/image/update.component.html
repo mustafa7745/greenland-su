@@ -8,7 +8,7 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div style="display: flex;"  *ngIf="imgResultAfterCompression">
+  <!-- <div style="display: flex;"  *ngIf="imgResultAfterCompression">
     <label for="exampleInputEmail1">Ratio</label>
     <input
     id="exampleInputEmail1"
@@ -24,16 +24,16 @@
         [(ngModel)]="quality"
       />
       <button class="btn-outline-primary" (click)="compressFile()">تطبيق</button>
-  </div>
+  </div> -->
   <div class="row">
     <div style="display: flex">
-      <div *ngIf="imgResultAfterCompression">
+      <!-- <div *ngIf="imgResultAfterCompression">
         <img
           style="width: 250px; height: 250px"
           [src]="imgResultAfterCompression"
         />
         <div>{{size(imgResultAfterCompression)}}</div>
-      </div>
+      </div> -->
       <div *ngIf="imgResultBeforeCompression">
         <img
           style="width: 250px; height: 250px"
