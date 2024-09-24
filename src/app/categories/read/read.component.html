@@ -54,14 +54,14 @@
     <div>
       <button (click)="add()" class="btn btn-outline-primary">اضافة</button>
       <button
-          *ngIf="stateController.selected.length > 0"
-          class="btn btn-outline-danger"
-          (click)="openDelete()"
-        >
-          حذف
-        </button>
+        *ngIf="stateController.selected.length > 0"
+        class="btn btn-outline-danger"
+        (click)="openDelete()"
+      >
+        حذف
+      </button>
     </div>
-    
+
     <ng-template ngFor let-item [ngForOf]="resultData" let-c="index">
       <div
         style="
@@ -77,7 +77,7 @@
         "
       >
         <!-- Image Section -->
-        <div style="flex-shrink: 0; display: flex; align-items: center;">
+        <div style="flex-shrink: 0; display: flex; align-items: center">
           <img
             (click)="openModalUpdateImage(item)"
             src="{{ item.category_image_path + item.image }}"
@@ -91,7 +91,7 @@
             alt="{{ item.name }}"
           />
         </div>
-    
+
         <!-- Information Section -->
         <div
           style="
@@ -113,52 +113,60 @@
           >
             {{ item.name }}
           </div>
-          <div style="color: #6c757d; font-size: 0.9em;">
+          <div style="color: #6c757d; font-size: 0.9em">
             <span>الترتيب: </span>
-            <span (click)="openModalUpdateOrder(item)" style="cursor: pointer;">
+            <span (click)="openModalUpdateOrder(item)" style="cursor: pointer">
               {{ item.order }}
             </span>
           </div>
-          <div style="color: #6c757d; font-size: 0.9em;">
+          <div style="color: #6c757d; font-size: 0.9em">
             <span>تاريخ الاضافة: </span>
             <span>{{ item.createdAt }}</span>
           </div>
         </div>
-    
+
         <!-- Action Buttons -->
-        <div style="display: flex; gap: 10px; align-items: center;">
-          <button
-            (click)="openProductsGroups(item)"
-            class="btn btn-outline-success"
-          >
-            مجموعات المنتجات
-          </button>
-    
-          <button
-            class="btn"
-            [ngClass]="{
-              'btn-primary': !stateController.selected.includes(item.id),
-              'btn-danger': stateController.selected.includes(item.id)
-            }"
-            (click)="
-              stateController.selected.includes(item.id)
-                ? stateController.removeFromSelected(item.id)
-                : stateController.addToSelected(item.id)
-            "
-          >
-            {{
-              stateController.selected.includes(item.id)
-                ? 'الغاء التحديد'
-                : 'تحديد'
-            }}
-          </button>
-    
-          <button (click)="openProducts(item)" class="btn btn-outline-success">
-            المنتجات
-          </button>
+        <div style="text-align: center">
+          <div>
+            <button
+              class="btn"
+              [ngClass]="{
+                'btn-primary': !stateController.selected.includes(item.id),
+                'btn-danger': stateController.selected.includes(item.id)
+              }"
+              (click)="
+                stateController.selected.includes(item.id)
+                  ? stateController.removeFromSelected(item.id)
+                  : stateController.addToSelected(item.id)
+              "
+            >
+              {{
+                stateController.selected.includes(item.id)
+                  ? "الغاء التحديد"
+                  : "تحديد"
+              }}
+            </button>
+          </div>
+          <div>
+            <button
+              (click)="openProductsGroups(item)"
+              class="btn btn-outline-success"
+            >
+              مجموعات المنتجات
+            </button>
+          </div>
+
+        
+          <div>
+            <button
+              (click)="openProducts(item)"
+              class="btn btn-outline-success"
+            >
+              المنتجات
+            </button>
+          </div>
         </div>
       </div>
     </ng-template>
-    
   </ng-template>
 </ng-template>

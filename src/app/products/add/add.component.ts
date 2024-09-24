@@ -27,8 +27,15 @@ export class ModalAddProduct {
   price = '';
   //
   productGroup: any;
+  isChecked: boolean = false;
+
+  onCheckboxChange(event: any) {
+    this.isChecked = event.target.checked;
+    console.log('Checkbox checked:', this.isChecked);
+  }
+
   isDisabledSaveButton() {
-    return !(this.newName.length  > 0 && this.productGroup);
+    return !(this.newName.length > 0 && this.productGroup);
   }
   onSave() {
     this.addConfirm();
@@ -72,49 +79,51 @@ export class ModalAddProduct {
       });
   }
   add() {
-    const data2 = this.requestServer.encryptData2();
-    if (data2.length > 0) {
-      const loadingModal =
-        this.requestServer.sharedMethod.customModal.loadingModal();
-      loadingModal.componentInstance.title =
-        'جاري الاضافة الجلسه يرجى الانتظار ';
-      const formData =
-        this.requestServer.sharedMethod.apiFormData.getFormData1();
+    const loadingModal =
+      this.requestServer.sharedMethod.customModal.loadingModal();
+    loadingModal.componentInstance.title = 'جاري الاضافة الجلسه يرجى الانتظار ';
 
-      //
+    var data3;
 
-      var data3  = JSON.stringify({
+    if (this.isChecked == true) {
+      data3 = {
         tag: 'add',
         inputCategoryId: this.data.id,
         inputProductName: this.newName,
         inputProductNumber: this.number,
         inputProductImage: this.image,
         inputProductPostPrice: this.price,
-        inputProductGroupId: this.productGroup.id
-      });;
-     
-      formData.set('data2', data2);
-      formData.set('data3', data3);
-      //
-      this.requestServer.request(
-        formData,
-        this.requestServer.sharedMethod.urls.productsUrl,
-        (result) => {
-          loadingModal.close();
-          this.activeModal.close(result);
-
-          const successModal =
-            this.requestServer.sharedMethod.customModal.successModal();
-          successModal.componentInstance.result = 'تم بنجاح';
-        },
-        (error) => {
-          loadingModal.close();
-          const errorModal =
-            this.requestServer.sharedMethod.customModal.errorModal();
-          errorModal.componentInstance.result = error;
-        }
-      );
+        inputProductGroupId: this.productGroup.id,
+      };
+    } else {
+      data3 = {
+        tag: 'addWithoutImage',
+        inputCategoryId: this.data.id,
+        inputProductName: this.newName,
+        inputProductNumber: this.number,
+        inputProductPostPrice: this.price,
+        inputProductGroupId: this.productGroup.id,
+      };
     }
+
+    this.requestServer.request2(
+      data3,
+      this.requestServer.sharedMethod.urls.productsUrl,
+      (result) => {
+        loadingModal.close();
+        this.activeModal.close(result);
+
+        const successModal =
+          this.requestServer.sharedMethod.customModal.successModal();
+        successModal.componentInstance.result = 'تم بنجاح';
+      },
+      (error) => {
+        loadingModal.close();
+        const errorModal =
+          this.requestServer.sharedMethod.customModal.errorModal();
+        errorModal.componentInstance.result = error;
+      }
+    );
   }
   chooseProductGroup() {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
