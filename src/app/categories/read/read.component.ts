@@ -78,7 +78,7 @@ export class CategoriesComponent {
         keyboard: false,
         backdrop: 'static',
         centered: true,
-        scrollable:true
+        scrollable: true,
       }
     );
     a.result.then((r) => {
@@ -93,10 +93,10 @@ export class CategoriesComponent {
         backdrop: 'static',
         centered: true,
         scrollable: true,
-        fullscreen : true
+        fullscreen: true,
       }
     );
-    a.componentInstance.onOpen(item)
+    a.componentInstance.onOpen(item);
   }
   openProductsGroups(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -106,10 +106,10 @@ export class CategoriesComponent {
         backdrop: 'static',
         centered: true,
         scrollable: true,
-        fullscreen : true
+        fullscreen: true,
       }
     );
-    a.componentInstance.onOpen(item)
+    a.componentInstance.onOpen(item);
   }
   openModalUpdateName(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -120,7 +120,7 @@ export class CategoriesComponent {
         centered: true,
       }
     );
-    a.componentInstance.onOpen(item)
+    a.componentInstance.onOpen(item);
   }
   openModalUpdateImage(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -129,10 +129,10 @@ export class CategoriesComponent {
         keyboard: false,
         backdrop: 'static',
         centered: true,
-        scrollable:true
+        scrollable: true,
       }
     );
-    a.componentInstance.onOpen(item)
+    a.componentInstance.onOpen(item);
   }
   openModalUpdateOrder(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -143,7 +143,7 @@ export class CategoriesComponent {
         centered: true,
       }
     );
-    a.componentInstance.onOpen(item)
+    a.componentInstance.onOpen(item);
     a.result.then((r) => {
       const data = JSON.parse(r);
       const index = this.resultData.findIndex((el) => el.id == data.id);
@@ -170,11 +170,10 @@ export class CategoriesComponent {
       this.stateController.selected.forEach((id) => {
         const index = this.resultData.findIndex((el) => el.id == id);
         if (index > -1) {
-          this.resultData.splice(index,1);
+          this.resultData.splice(index, 1);
         }
       });
-      this.stateController.selected = []
-
+      this.stateController.selected = [];
     });
   }
 }
