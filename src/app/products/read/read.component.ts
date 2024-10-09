@@ -141,13 +141,7 @@ export class ProductsModal {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openUpdateNumber(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -160,13 +154,7 @@ export class ProductsModal {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openUpdateOrder(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -179,13 +167,7 @@ export class ProductsModal {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openUpdateGroup(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -198,13 +180,7 @@ export class ProductsModal {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openUpdateAvailable(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -217,13 +193,7 @@ export class ProductsModal {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openDelete() {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -243,11 +213,19 @@ export class ProductsModal {
       this.stateController.selected.forEach((id) => {
         const index = this.resultData.findIndex((el) => el.id == id);
         if (index > -1) {
-          this.resultData.splice(index,1);
+          this.resultData.splice(index, 1);
         }
       });
-      this.stateController.selected = []
-
+      this.stateController.selected = [];
+    });
+  }
+  onUpdateItem(a: any) {
+    a.result.then((r: any) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
     });
   }
 }

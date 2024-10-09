@@ -83,20 +83,4 @@ export class ProductsGroupsModal {
       this.resultData.push(JSON.parse(r));
     });
   }
-
-  openProductsImage(item: any) {
-    const a = this.requestServer.sharedMethod.customModal.modalService.open(
-      ProductsImagesModal,
-      {
-        keyboard: false,
-        backdrop: 'static',
-        centered: true,
-        scrollable: true,
-      }
-    );
-    a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      this.resultData.push(JSON.parse(r));
-    });
-  }
 }

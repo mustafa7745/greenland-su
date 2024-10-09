@@ -121,6 +121,7 @@ export class CategoriesComponent {
       }
     );
     a.componentInstance.onOpen(item);
+    this.onUpdateItem(a);
   }
   openModalUpdateImage(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -133,6 +134,7 @@ export class CategoriesComponent {
       }
     );
     a.componentInstance.onOpen(item);
+    this.onUpdateItem(a);
   }
   openModalUpdateOrder(item: any) {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -144,13 +146,7 @@ export class CategoriesComponent {
       }
     );
     a.componentInstance.onOpen(item);
-    a.result.then((r) => {
-      const data = JSON.parse(r);
-      const index = this.resultData.findIndex((el) => el.id == data.id);
-      if (index > -1) {
-        this.resultData[index] = data;
-      }
-    });
+    this.onUpdateItem(a);
   }
   openDelete() {
     const a = this.requestServer.sharedMethod.customModal.modalService.open(
@@ -174,6 +170,15 @@ export class CategoriesComponent {
         }
       });
       this.stateController.selected = [];
+    });
+  }
+  onUpdateItem(a: any) {
+    a.result.then((r: any) => {
+      const data = JSON.parse(r);
+      const index = this.resultData.findIndex((el) => el.id == data.id);
+      if (index > -1) {
+        this.resultData[index] = data;
+      }
     });
   }
 }
