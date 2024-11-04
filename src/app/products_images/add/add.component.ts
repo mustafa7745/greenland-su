@@ -35,7 +35,7 @@ export class ModalAddProductImage {
 
   compressFile() {
     this.imageCompress.uploadFile().then(({ image, orientation }) => {
-      this.imgResultBeforeCompression = image;
+      this.imgResultBeforeCompression = image.split(',')[1];
       console.log(
         'Size in bytes of the uploaded image was:',
         this.imageCompress.byteCount(image)
