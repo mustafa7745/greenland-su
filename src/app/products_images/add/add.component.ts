@@ -44,7 +44,7 @@ export class ModalAddProductImage {
         .compressFile(image, orientation, 40, 90) // 50% ratio, 50% quality
         .then((compressedImage) => {
           this.imgResultAfterCompression = compressedImage;
-          this.image = this.imgResultAfterCompression.split(',')[1];
+          // this.image = this.imgResultAfterCompression.split(',')[1];
 
           console.log(
             'Size in bytes after compression iss now:',
