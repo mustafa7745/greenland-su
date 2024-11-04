@@ -44,7 +44,7 @@ export class ModalAddProductImage {
         .compressFile(image, orientation, 40, 90) // 50% ratio, 50% quality
         .then((compressedImage) => {
           this.imgResultAfterCompression = compressedImage;
-          // this.image = this.imgResultAfterCompression.split(',')[1];
+          this.image = this.imgResultAfterCompression.split(',')[1];
 
           console.log(
             'Size in bytes after compression iss now:',
@@ -80,7 +80,7 @@ export class ModalAddProductImage {
       const data3 = JSON.stringify({
         tag: 'add',
         inputProductId: this.data.id,
-        inputProductImage: this.image,
+        inputProductImage: this.imgResultBeforeCompression,
       });
       formData.set('data2', data2);
       formData.set('data3', data3);
