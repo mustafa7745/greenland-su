@@ -7,6 +7,7 @@ import { OffersComponent } from './offers/read/read.component';
 import { NotificationsComponent } from './notifications/read/read.component';
 import { UsersComponent } from './delivery_men/read.component';
 import { SettingsComponent } from './settings/read.component';
+import { ProductsPage2 } from './products-p2/read.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'notifications', component: NotificationsComponent },
       { path: 'users', component: UsersComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'product-manage', component: ProductsPage2 },
     ],
   },
 ];

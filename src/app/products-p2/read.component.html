@@ -1,0 +1,123 @@
+<Button class="btn btn-primary" (click)="openModalSearchProduct()">بحث عن المنتج</Button>
+<div
+  style="
+    background-color: #f1f3f5;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  "
+  *ngIf="product"
+>
+  <!-- Item Information -->
+  <div style="flex-grow: 1" >
+    <div
+      style="font-size: 1.1em; font-weight: 600; cursor: pointer"
+      (click)="openUpdateName(product)"
+    >
+      {{ product.name }}
+    </div>
+
+    <div style="margin-top: 8px; color: #495057">
+      <span style="font-weight: 500"> الرقم: </span>
+      <span (click)="openUpdateNumber(product)" style="cursor: pointer">
+        {{ product.number }}
+      </span>
+    </div>
+
+    <div style="margin-top: 8px; color: #495057">
+      <span
+        (click)="openUpdatePrice(product)"
+        style="font-weight: 500; cursor: pointer"
+      >
+        السعر الحالي:
+      </span>
+      {{ product.postPrice }}
+    </div>
+
+    <div style="margin-top: 8px; color: #495057">
+      <span style="font-weight: 500"> السعر السابق: </span>
+      {{ product.prePrice }}
+    </div>
+
+    <div style="margin-top: 8px; color: #495057">
+      <span style="font-weight: 500"> الترتيب: </span>
+      <span (click)="openUpdateOrder(product)" style="cursor: pointer">
+        {{ product.order }}
+      </span>
+    </div>
+
+    
+    <div style="margin-top: 8px; color: #495057">
+      <span style="font-weight: 500"> فئة المنتج: </span>
+      <span (click)="openUpdateCategory(product)" style="cursor: pointer">
+        {{ product.category.name }}
+      </span>
+    </div>
+
+    <div *ngIf="product.products_groupsName" style="margin-top: 8px">
+      <span style="font-weight: 500"> المجموعه: </span>
+      <span (click)="openUpdateGroup(product)" style="cursor: pointer">
+        {{ product.products_groupsName }}
+      </span>
+    </div>
+
+    
+    <div style="margin-top: 8px; color: #495057">
+      <span style="font-weight: 500"> الوصف: </span>
+      <span (click)="openUpdateDescription(product)" style="cursor: pointer">
+        {{ product.description }}
+      </span>
+    </div>
+
+
+  </div>
+
+  <!-- Availability Status -->
+  <div style="margin-right: 15px">
+    <button
+      *ngIf="product.isAvailable == '1'"
+      (click)="openUpdateAvailable(product)"
+      class="btn btn-success"
+    >
+      الكمية متوفرة
+    </button>
+    <button
+      *ngIf="product.isAvailable == '0'"
+      (click)="openUpdateAvailable(product)"
+      class="btn btn-danger"
+    >
+      الكمية غير متوفرة
+    </button>
+  </div>
+
+  <!-- Action Buttons -->
+  <div style="display: flex; gap: 10px">
+    <button
+      (click)="openProductsImage(product)"
+      class="btn btn-outline-success"
+    >
+      الصور
+    </button>
+
+    <!-- <button
+        class="btn"
+        [ngClass]="{
+          'btn-primary': !stateController.selected.includes(product.id),
+          'btn-danger': stateController.selected.includes(product.id)
+        }"
+        (click)="
+          stateController.selected.includes(product.id)
+            ? stateController.removeFromSelected(product.id)
+            : stateController.addToSelected(product.id)
+        "
+      >
+        {{
+          stateController.selected.includes(product.id) ? "الغاء التحديد" : "تحديد"
+        }}
+      </button> -->
+  </div>
+</div>

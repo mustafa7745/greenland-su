@@ -24,6 +24,15 @@
         </li>
         <li>
           <a
+            routerLink="/dashboard/product-manage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="offcanvas.dismiss('Cross click')"
+            >ادارة المنتجات</a
+          >
+        </li>
+        <li>
+          <a
             routerLink="/dashboard/ads"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"

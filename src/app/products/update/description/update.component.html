@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">تحديث الوصف</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col">
+      <textarea
+      style="direction: rtl;"
+        type="text"
+        class="form-control"
+        placeholder="الوصف"
+        [(ngModel)]="data.description"
+        disabled
+      ></textarea>
+
+      <textarea
+      style="direction: rtl;"
+        type="text"
+        class="form-control"
+        placeholder="الوصف الجديد"
+        [(ngModel)]="newName"
+      ></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="isDisabledSaveButton()"
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</div>
