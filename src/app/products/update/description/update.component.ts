@@ -66,6 +66,7 @@ export class ModalUpdateProductDescription {
         successModal.componentInstance.result = 'تم بنجاح';
       },
       (error) => {
+        this.activeModal.dismiss();
         loadingModal.close();
         const errorModal =
           this.requestServer.sharedMethod.customModal.errorModal();
