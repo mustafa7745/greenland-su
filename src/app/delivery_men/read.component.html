@@ -34,7 +34,7 @@
     *ngIf="isChecked == false"
     class="btn-check1"
   >
-    تحقق
+    التحقق من تسجله كموصل
   </button>
 
   <!-- Display delivery information if available -->
@@ -60,7 +60,16 @@
 
   <!-- Display search result data -->
   <div class="search-result">
+    <hr />
     <h3>{{ resultSearchData.name }}</h3>
+    <p *ngIf="resultSearchData.status == 1">
+      الحالة: مفعل
+      <button (click)="openUpdateUserStatus()">ايقاف</button>
+    </p>
+    <p *ngIf="resultSearchData.status == 0">
+      الحالة: موقف
+      <button (click)="openUpdateUserStatus()">تفعيل</button>
+    </p>
   </div>
 </div>
 <div>

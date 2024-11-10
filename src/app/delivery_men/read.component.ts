@@ -5,14 +5,15 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResquestServer } from '../../app/data/shared/requestServer';
 import { StateController } from '../../app/data/shared/stateController';
 import { ProductsModal } from '../../app/products/read/read.component';
-import { ModalUpdateDeliveryManStatus } from './update/status/update.component';
+import { ModalUpdateDeliveryManStatus } from './update/delivery_status/update.component';
+import { ModalUpdateUserStatus } from './update/user_status/update.component';
 
 @Component({
   selector: 'order',
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDropdownModule],
   templateUrl: './read.component.html',
-  styleUrl:'./read.component.css'
+  styleUrl: './read.component.css',
 })
 export class UsersComponent {
   requestServer = new ResquestServer();
@@ -125,7 +126,7 @@ export class UsersComponent {
         loadingModal.close();
         // this.resultData = res;
         const data = JSON.parse(res);
-        this.isChecked = true
+        this.isChecked = true;
         this.deliveryMan = data;
       },
       (e) => {
@@ -275,10 +276,29 @@ export class UsersComponent {
     a.componentInstance.onOpen(this.deliveryMan);
     this.onUpdateItem(a);
   }
+  openUpdateUserStatus() {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateUserStatus,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(this.resultSearchData);
+    this.onUpdateUserItem(a);
+  }
   onUpdateItem(a: any) {
     a.result.then((r: any) => {
       const data = JSON.parse(r);
       this.deliveryMan = data;
+    });
+  }
+  onUpdateUserItem(a: any) {
+    a.result.then((r: any) => {
+      const data = JSON.parse(r);
+      this.resultSearchData = data;
     });
   }
 }
