@@ -29,7 +29,11 @@
 </div>
 <div *ngIf="resultSearchData" class="result-container">
   <!-- Button to check delivery status -->
-  <button (click)="checkIfDelivery()" *ngIf="isChecked == false" class="btn-check1">
+  <button
+    (click)="checkIfDelivery()"
+    *ngIf="isChecked == false"
+    class="btn-check1"
+  >
     تحقق
   </button>
 
@@ -37,6 +41,14 @@
   <div *ngIf="deliveryMan" class="delivery-info">
     <p>
       تم التسجيل في: <strong>{{ deliveryMan.createdAt }}</strong>
+    </p>
+    <p *ngIf="deliveryMan.status == 1">
+      الحالة: مفعل
+      <button (click)="openUpdateStatus()">ايقاف</button>
+    </p>
+    <p *ngIf="deliveryMan.status == 0">
+      الحالة: موقف
+      <button (click)="openUpdateStatus()">تفعيل</button>
     </p>
   </div>
 

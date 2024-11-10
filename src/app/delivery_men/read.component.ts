@@ -5,6 +5,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResquestServer } from '../../app/data/shared/requestServer';
 import { StateController } from '../../app/data/shared/stateController';
 import { ProductsModal } from '../../app/products/read/read.component';
+import { ModalUpdateDeliveryManStatus } from './update/status/update.component';
 
 @Component({
   selector: 'order',
@@ -260,5 +261,24 @@ export class UsersComponent {
         }
       );
     }
+  }
+  openUpdateStatus() {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalUpdateDeliveryManStatus,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    a.componentInstance.onOpen(this.deliveryMan);
+    this.onUpdateItem(a);
+  }
+  onUpdateItem(a: any) {
+    a.result.then((r: any) => {
+      const data = JSON.parse(r);
+      this.deliveryMan = data;
+    });
   }
 }
