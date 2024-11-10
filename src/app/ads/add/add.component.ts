@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { ResquestServer } from '../../data/shared/requestServer';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalSearchProduct } from '../../search/products/search.component';
+import { ModalSearchCategory } from '../../search/category/search.component';
 
 @Component({
   selector: 'add-ads',
@@ -20,7 +22,11 @@ export class ModalAddAds {
   imgResultAfterCompression: string = '';
   image = '';
   //
+  time = '';
   newName = '';
+  type = '';
+
+  product: any;
   isDisabledSaveButton() {
     return !(this.newName.length > 0);
   }
@@ -70,12 +76,15 @@ export class ModalAddAds {
       tag: 'add',
       inputAdsDescription: this.newName,
       inputAdsImage: this.image,
+      inputAdsType: this.type,
+      inputAdsTime: this.time,
+      inputAdsProductCatId: this.product ? this.product.id : '',
     };
 
     this.requestServer.request2(
       data3,
       this.requestServer.sharedMethod.urls.adsUrl,
-      (result) => {  
+      (result) => {
         loadingModal.close();
         this.activeModal.close(result);
 
@@ -84,12 +93,45 @@ export class ModalAddAds {
         successModal.componentInstance.result = 'تم بنجاح';
       },
       (error) => {
-        this.activeModal.dismiss();
         loadingModal.close();
         const errorModal =
           this.requestServer.sharedMethod.customModal.errorModal();
         errorModal.componentInstance.result = error;
       }
     );
+  }
+
+  openModalSearchProduct() {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalSearchProduct,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    // a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      this.product = r;
+    });
+  }
+  openModalSearchCategory() {
+    const a = this.requestServer.sharedMethod.customModal.modalService.open(
+      ModalSearchCategory,
+      {
+        keyboard: false,
+        backdrop: 'static',
+        centered: true,
+        scrollable: true,
+      }
+    );
+    // a.componentInstance.onOpen(item);
+    a.result.then((r) => {
+      this.product = r;
+    });
+  }
+  onTypeChange() {
+   this.product = null;
   }
 }

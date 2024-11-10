@@ -7,54 +7,159 @@
     (click)="activeModal.dismiss('Cross click')"
   ></button>
 </div>
-<div class="modal-body" style="padding: 20px; background-color: #f8f9fa; border-radius: 10px;">
+<div
+  class="modal-body"
+  style="
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    direction: rtl;
+  "
+>
   <div class="row">
     <div class="col">
       <!-- حقل الوصف -->
       <div class="form-group">
-        <label for="adDescription" style="font-weight: bold; color: #333;">وصف الإعلان</label>
+        <label for="adDescription" style="font-weight: bold; color: #333"
+          >وصف الإعلان</label
+        >
         <input
           id="adDescription"
           type="text"
           class="form-control"
           placeholder="وصف الإعلان"
           [(ngModel)]="newName"
-          style="margin-bottom: 15px; padding: 10px; font-size: 16px; border-radius: 5px;"
+          style="
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
         />
-      </div>
+        <label for="adDescription" style="font-weight: bold; color: #333"
+          >مدة عرض الاعلان</label
+        >
+        <input
+          id="adDescription1"
+          type="text"
+          class="form-control"
+          placeholder="مدة عرض الاعلان"
+          [(ngModel)]="time"
+          style="
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        />
+        <label>الاعلان ل :</label>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="noTypeID"
+            name="adsType"
+            value="10"
+            [(ngModel)]="type"
+            (ngModelChange)="onTypeChange()"
+          />
+          <label class="form-check-label" for="noType"> لاشئ </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="productTypeID"
+            name="adsType"
+            value="1"
+            [(ngModel)]="type"
+            (ngModelChange)="onTypeChange()"
+          />
+          <label class="form-check-label" for="productType"> منتج </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="categoryTypeID"
+            name="adsType"
+            value="2"
+            [(ngModel)]="type"
+            (ngModelChange)="onTypeChange()"
+          />
+          <label class="form-check-label" for="categoryType"> فئة </label>
+        </div>
 
-      <!-- صورة الإعلان -->
-      <div class="form-group text-center">
+        <div *ngIf="type == '1'">
+          <button
+            class="btn btn-success btn-block"
+            (click)="openModalSearchProduct()"
+          >
+            اختيار منتج
+          </button>
+          <div *ngIf="product">
+            {{ product.name }}
+          </div>
+        </div>
+
+        <div *ngIf="type == '2'">
+          <button
+            class="btn btn-success btn-block"
+            (click)="openModalSearchCategory()"
+          >
+            اختيار فئة
+          </button>
+          <div *ngIf="product">
+            {{ product.name }}
+          </div>
+        </div>
+
+        <!-- زر اختيار الصورة ونص الحجم المطلوب -->
+
+        <label
+          for="formFile"
+          class="form-label"
+          style="font-weight: bold; color: #333"
+          >صورة الإعلان</label
+        >
+
         <img
-          [src]="imgResultAfterCompression"
           *ngIf="imgResultAfterCompression"
-          alt="صورة الإعلان"
-          style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+          [src]="imgResultAfterCompression"
+          alt="عرض الصورة"
+          style="
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-top: 10px;
+          "
         />
-      </div>
 
-      <!-- زر اختيار الصورة ونص الحجم المطلوب -->
-      <div class="form-group">
-        <label for="formFile" class="form-label" style="font-weight: bold; color: #333;">صورة الإعلان</label>
-        <button type="button" class="btn btn-success btn-block" (click)="compressFile()" style="width: 100%; padding: 10px; font-size: 16px; border-radius: 5px;">
+        <button
+          type="button"
+          class="btn btn-success btn-block"
+          (click)="compressFile()"
+          style="
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+          "
+        >
           اختر صورة
         </button>
-        <small class="form-text text-muted" style="margin-top: 10px; display: block; text-align: center;">
-          يجب أن تكون أبعاد الصورة 800x600 بكسل
-        </small>
       </div>
     </div>
   </div>
-</div>
 
-
-<div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-success"
-    [disabled]="isDisabledSaveButton()"
-    (click)="onSave()"
-  >
-    Save
-  </button>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="isDisabledSaveButton()"
+      (click)="onSave()"
+    >
+      Save
+    </button>
+  </div>
 </div>

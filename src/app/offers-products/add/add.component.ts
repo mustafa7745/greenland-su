@@ -93,7 +93,6 @@ export class ModalAddProductToOffer {
         successModal.componentInstance.result = 'تم بنجاح';
       },
       (error) => {
-        this.activeModal.dismiss();
         loadingModal.close();
         const errorModal =
           this.requestServer.sharedMethod.customModal.errorModal();
